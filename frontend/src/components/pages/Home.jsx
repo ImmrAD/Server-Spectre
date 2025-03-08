@@ -1,4 +1,5 @@
 import React from 'react';
+import LetterRecognitionGame from '../scenarios/LetterRecognitionGame.jsx';
 
 const Home = () => {
   return (
@@ -48,40 +49,49 @@ const Home = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-semibold mb-2">Immersive Learning</h3>
-              <p className="text-gray-600">
-                Interactive VR scenarios provide a safe environment for children to practice real-world skills without the anxiety of real-world consequences.
-              </p>
+              <p className="text-gray-600">Experience real-world scenarios in a safe, controlled virtual environment.</p>
             </div>
 
             <div className="bg-white p-6 rounded-lg shadow">
-              <div className="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Customizable Difficulty</h3>
-              <p className="text-gray-600">
-                Adjust scenario complexity to match each child's individual needs, abilities, and learning pace.
-              </p>
+              <h3 className="text-xl font-semibold mb-2">Customizable Experience</h3>
+              <p className="text-gray-600">Adapt the learning environment to each child's unique needs and abilities.</p>
             </div>
 
             <div className="bg-white p-6 rounded-lg shadow">
-              <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Daily Rewards</h3>
-              <p className="text-gray-600">
-                Collect daily rewards for consistent practice and engagement.
-              </p>
+              <h3 className="text-xl font-semibold mb-2">Progress Tracking</h3>
+              <p className="text-gray-600">Monitor and measure learning outcomes with detailed progress reports.</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Scenarios Preview */}
-      <div className="bg-gray-100 py-16 px-6">
+      {/* Interactive Game Section */}
+      <div className="py-16 px-6 bg-gray-100">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Try Our Letter Recognition Game</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Practice letter recognition skills in an interactive and engaging way.
+            </p>
+          </div>
+          <div className="bg-white rounded-lg shadow-lg p-8">
+            <LetterRecognitionGame />
+          </div>
+        </div>
+      </div>
+
+      {/* Featured Learning Scenarios */}
+      <div className="py-16 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Featured Learning Scenarios</h2>
@@ -142,44 +152,44 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Testimonials */}
-      <div className="py-16 px-6">
+      {/* How It Works */}
+      <div className="py-16 px-6 bg-gray-100">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">What Parents & Educators Say</h2>
+            <h2 className="text-3xl font-bold mb-4">How It Works</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Hear from those who have seen real progress using our VR learning tools
+              Our VR learning tool is simple to use and highly effective for children with ASD & ID.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-blue-600 font-bold">JD</span>
-                </div>
-                <div>
-                  <h4 className="font-semibold">Jane Doe</h4>
-                  <p className="text-gray-600 text-sm">Parent of a child with ASD</p>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white p-6 rounded-lg shadow text-center">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-blue-600 text-2xl font-bold">1</span>
               </div>
-              <p className="text-gray-600 italic">
-                "The VR scenarios have helped my son practice social interactions in a way that feels safe for him. He's been able to transfer what he's learned to real-life situations, which has been amazing to witness."
+              <h4 className="font-semibold text-lg">Choose a Scenario</h4>
+              <p className="text-gray-600 mt-2">
+                Select a real-life social or cognitive skill to practice, like crossing the road or ordering at a café.
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-green-600 font-bold">MS</span>
-                </div>
-                <div>
-                  <h4 className="font-semibold">Michael Smith</h4>
-                  <p className="text-gray-600 text-sm">Special Education Teacher</p>
-                </div>
+            <div className="bg-white p-6 rounded-lg shadow text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-green-600 text-2xl font-bold">2</span>
               </div>
-              <p className="text-gray-600 italic">
-                "This platform has become an essential tool in my classroom. The progress tracking helps me tailor instruction to each student's needs, and the children are excited to practice skills in the VR environment."
+              <h4 className="font-semibold text-lg">Practice in VR</h4>
+              <p className="text-gray-600 mt-2">
+                Immerse in a safe, controlled environment to learn and reinforce essential skills through interactive tasks.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow text-center">
+              <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-orange-600 text-2xl font-bold">3</span>
+              </div>
+              <h4 className="font-semibold text-lg">Apply & Track Progress</h4>
+              <p className="text-gray-600 mt-2">
+                Use progress tracking tools to measure improvements and apply newly learned skills in real life.
               </p>
             </div>
           </div>
@@ -187,7 +197,7 @@ const Home = () => {
       </div>
 
       {/* Gamified Rewards Section */}
-      <div className="bg-gray-100 py-16 px-6">
+      <div className="py-16 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Gamified Rewards System</h2>
@@ -217,26 +227,4 @@ const Home = () => {
               </div>
               <h3 className="text-xl font-semibold mb-2">Progress Milestones</h3>
               <p className="text-gray-600">
-                Track achievements and celebrate progress with visual rewards.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-lg shadow">
-              <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Progress Tracking</h3>
-              <p className="text-gray-600">
-                Detailed analytics help parents and educators monitor development and identify areas needing additional support.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default Home;
+                Track achievements an

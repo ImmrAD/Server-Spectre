@@ -7,17 +7,27 @@ import Register from './components/auth/Register';
 import Dashboard from './components/dashboard/Dashboard';
 import ScenarioView from './components/scenarios/ScenarioView';
 import Home from './components/pages/Home';
+import Navbar from './components/ui/Navbar';
 
 const PrivateRoute = ({ children }) => {
   const { user } = useAuth();
   return user ? children : <Navigate to="/login" />;
 };
 
+const MainLayout = ({ children }) => (
+  <div className="min-h-screen bg-gray-50">
+    <Navbar />
+    <main className="container mx-auto px-4 py-6">
+      {children}
+    </main>
+  </div>
+);
+
 const router = createBrowserRouter(
   [
     {
       path: "/",
-      element: <Navigate to="/home" />
+      element: <AuthProvider><MainLayout><Home /></MainLayout></AuthProvider>
     },
     {
       path: "/login",
@@ -28,16 +38,12 @@ const router = createBrowserRouter(
       element: <AuthProvider><Register /></AuthProvider>
     },
     {
-      path: "/home",
-      element: <AuthProvider><PrivateRoute><Home /></PrivateRoute></AuthProvider>
-    },
-    {
       path: "/dashboard",
-      element: <AuthProvider><PrivateRoute><Dashboard /></PrivateRoute></AuthProvider>
+      element: <AuthProvider><PrivateRoute><MainLayout><Dashboard /></MainLayout></PrivateRoute></AuthProvider>
     },
     {
       path: "/scenario/:scenarioId",
-      element: <AuthProvider><PrivateRoute><ScenarioView /></PrivateRoute></AuthProvider>
+      element: <AuthProvider><PrivateRoute><MainLayout><ScenarioView /></MainLayout></PrivateRoute></AuthProvider>
     }
   ],
   {

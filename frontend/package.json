@@ -16,6 +16,7 @@
     "@react-three/xr": "^6.6.9",
     "@tailwindcss/cli": "^4.0.12",
     "@tailwindcss/vite": "^4.0.12",
+    "aframe-react": "^4.4.0",
     "dotenv": "^16.4.7",
     "firebase": "^11.4.0",
     "postcss-nested": "^7.0.2",
