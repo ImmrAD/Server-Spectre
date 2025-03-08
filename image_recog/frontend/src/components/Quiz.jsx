@@ -37,63 +37,62 @@ const getRandomQuestions = (questions, num) => {
 };
 
 const Quiz = ({ mode }) => {
-  const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
-  const [playCorrect] = useSound(correctSound);
-  const [playWrong] = useSound(wrongSound);
-  const [playClick] = useSound(clickSound);
+  const [progress, setProgress] = useState(0);
+  const [feedback, setFeedback] = useState("");
+  const [questions, setQuestions] = useState(getRandomQuestions(allQuestions, 10));
 
   useEffect(() => {
-    setQuestions(getRandomQuestions(allQuestions, 10));
-  }, []);
+    setProgress((currentQuestion / questions.length) * 100);
+  }, [currentQuestion]);
 
   const handleAnswer = (option) => {
-    playClick();
-    if (option === questions[currentQuestion].answer) {
+    if (option === questions[currentQuestion]?.answer) {
       setScore(score + 1);
-      playCorrect();
+      setFeedback("✅ Correct! Great job!");
     } else {
-      playWrong();
+      setFeedback("❌ Oops! Try again next time.");
     }
-    setSelectedAnswer(option);
+    
     setTimeout(() => {
-      setSelectedAnswer(null);
-      setCurrentQuestion(currentQuestion + 1);
+      setFeedback("");
+      if (currentQuestion < questions.length - 1) {
+        setCurrentQuestion(currentQuestion + 1);
+      } else {
+        alert(`🎉 Quiz complete! Your score: ${score + 1}/${questions.length}`);
+      }
     }, 1000);
   };
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="p-6 bg-blue-100 rounded-xl shadow-lg text-center">
-      {currentQuestion < questions.length ? (
-        <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} transition={{ duration: 0.5 }}>
-          <h2 
-            className="text-lg font-semibold mb-4" 
-            onMouseEnter={() => speakText(questions[currentQuestion].question)}
-          >
-            {questions[currentQuestion].question}
-          </h2>
-          <div className="grid grid-cols-1 gap-3">
-            {questions[currentQuestion].options.map((option, index) => (
-              <motion.button
-                key={index}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`p-3 rounded-lg text-white font-semibold transition-all ${selectedAnswer === option ? (option === questions[currentQuestion].answer ? 'bg-green-500' : 'bg-red-500') : 'bg-blue-500 hover:bg-blue-700'}`}
-                onClick={() => handleAnswer(option)}
-                disabled={selectedAnswer !== null}
-                onMouseEnter={() => speakText(option)}
-              >
-                {option}
-              </motion.button>
-            ))}
-          </div>
-        </motion.div>
-      ) : (
-        <motion.h2 initial={{ scale: 0.8 }} animate={{ scale: 1 }} transition={{ duration: 0.5 }} className="text-lg font-semibold">Quiz Complete! Your Score: {score}/{questions.length}</motion.h2>
-      )}
-    </motion.div>
+    <div className="flex flex-col items-center p-4">
+      <div className="w-full max-w-md p-4 border rounded-lg shadow-md bg-white">
+        {questions.length > 0 ? (
+          <>
+            <h2 className="text-xl font-bold mb-4 text-center animate-pulse">
+              {questions[currentQuestion]?.question}
+            </h2>
+            <div className="flex flex-col gap-2">
+              {questions[currentQuestion]?.options.map((option, index) => (
+                <button 
+                  key={index} 
+                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition-all transform hover:scale-105"
+                  onClick={() => handleAnswer(option)}>
+                  {option}
+                </button>
+              ))}
+            </div>
+            <div className="mt-4 w-full bg-gray-200 rounded h-2 overflow-hidden">
+              <div className="bg-blue-500 h-2 rounded transition-all" style={{ width: `${progress}%` }}></div>
+            </div>
+            {feedback && <p className="mt-2 text-center font-medium text-lg animate-bounce">{feedback}</p>}
+          </>
+        ) : (
+          <p className="text-center text-gray-500 animate-pulse">Loading questions...</p>
+        )}
+      </div>
+    </div>
   );
 };
 
